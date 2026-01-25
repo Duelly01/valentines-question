@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Be My Valentine?</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <h1 class="title">💌 Hello, you.</h1>
+      <p class="subtitle">I made something small for you.</p>
+      <button id="startBtn" class="btn primary">Open my message</button>
+    </header>
+
+    <section class="card">
+      <p class="hint">
+        Tip: turn on sound for the full experience (optional). 🎶
+      </p>
+    </section>
+  </main>
+
+  <!-- OVERLAY BACKDROP -->
+  <div id="overlay" class="overlay hidden" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button id="closeBtn" class="iconBtn" aria-label="Close">✕</button>
+
+      <!-- STEP INDICATOR -->
+      <div class="steps">
+        <span class="dot active" data-step="0"></span>
+        <span class="dot" data-step="1"></span>
+        <span class="dot" data-step="2"></span>
+        <span class="dot" data-step="3"></span>
+      </div>
+
+      <!-- STEP 1 -->
+      <div class="step active" data-step="0">
+        <h2 id="modalTitle">A quick question…</h2>
+        <p>
+          I’ve been thinking about you a lot lately, and I wanted to ask you something
+          in a slightly dramatic way.
+        </p>
+        <div class="actions">
+          <button class="btn primary nextBtn">Continue</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step" data-step="1">
+        <h2>Will you be my Valentine? 🌹</h2>
+        <p>Choose wisely. (No pressure. Okay, tiny pressure.)</p>
+
+        <div class="actions two">
+          <button id="yesBtn" class="btn primary">Yes 💖</button>
+          <button id="noBtn" class="btn secondary">No 🙈</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 (NO PATH) -->
+      <div class="step" data-step="2">
+        <h2>Are you sure? 😭</h2>
+        <p>
+          Just making sure… because I prepared imaginary flowers, snacks, and a playlist.
+        </p>
+        <p class="tiny">You can still change your mind. I’ll pretend I didn’t see that.</p>
+
+        <div class="actions two">
+          <button id="okFineBtn" class="btn primary">Okay fine, YES 😌</button>
+          <button class="btn secondary backBtn">Go back</button>
+        </div>
+      </div>
+
+      <!-- STEP 4 (YES PATH) -->
+      <div class="step" data-step="3">
+        <h2>YAYYYYY! 🎉💘</h2>
+        <p>
+          You just made my day. Want to pick a plan?
+        </p>
+
+        <div class="planGrid">
+          <button class="plan" data-plan="Coffee + dessert ☕🍰">Coffee + dessert ☕🍰</button>
+          <button class="plan" data-plan="Movie night 🎬🍿">Movie night 🎬🍿</button>
+          <button class="plan" data-plan="Dinner date 🍝🕯️">Dinner date 🍝🕯️</button>
+          <button class="plan" data-plan="Surprise me ✨">Surprise me ✨</button>
+        </div>
+
+        <div class="result" id="resultBox" aria-live="polite">
+          <p class="resultTitle">Your plan:</p>
+          <p id="chosenPlan" class="resultPlan">Pick one above 👆</p>
+        </div>
+
+        <div class="actions">
+          <button id="copyBtn" class="btn primary">Copy message to send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
