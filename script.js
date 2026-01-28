@@ -66,9 +66,64 @@ document.querySelectorAll(".backBtn").forEach(btn => {
 // --- Yes/No flow ---
 yesBtn?.addEventListener("click", () => goToStep(3));
 
-noBtn?.addEventListener("click", () => goToStep(2));
+noBtn?.addEventListener("click", (e) => {
+  // On the 1st click, it starts running away
+  e.preventDefault();
+  e.stopPropagation();
+  enableRunaway();
+});
 
-okFineBtn?.addEventListener("click", () => goToStep(3));
+okFineBtn?.addEventListener("click", () => {
+  startHearts();
+  goToStep(3);
+});
+
+// --- No button "run away" logic ---
+let runawayMode = false;
+
+function getNoButtonContainer() {
+  // The parent container is: <div class="actions two"> ... </div>
+  // It exists on step 2 of the modal (data-step="1")
+  return noBtn?.closest(".actions.two");
+}
+
+function enableRunaway() {
+  runawayMode = true;
+
+  const container = getNoButtonContainer();
+  if (!container || !noBtn) return;
+
+  // Allow absolute positioning inside the button row
+  container.style.position = "relative";
+  noBtn.style.position = "absolute";
+  noBtn.style.left = "0px";
+  noBtn.style.top = "0px";
+
+  // Make it run away when you try to hover it too (optional but fun)
+  noBtn.addEventListener("mouseenter", moveNoButton);
+  moveNoButton();
+
+  // Also start hearts when runaway begins
+  startHearts();
+}
+
+function moveNoButton() {
+  const container = getNoButtonContainer();
+  if (!container || !noBtn) return;
+
+  const pad = 6;
+  const c = container.getBoundingClientRect();
+  const b = noBtn.getBoundingClientRect();
+
+  const maxX = Math.max(pad, c.width - b.width - pad);
+  const maxY = Math.max(pad, c.height - b.height - pad);
+
+  const x = pad + Math.random() * (maxX - pad);
+  const y = pad + Math.random() * (maxY - pad);
+
+  noBtn.style.left = `${x}px`;
+  noBtn.style.top = `${y}px`;
+}
 
 // --- plan selection ---
 document.querySelectorAll(".plan").forEach(btn => {
