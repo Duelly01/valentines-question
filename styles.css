@@ -169,14 +169,6 @@ body {
 p { color: var(--muted); line-height: 1.5; }
 .tiny { font-size: 0.92rem; }
 
-.planGrid {
-  display: flex;
-  flex-direction: column;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 14px;
-}
-
 .yes-gif {
   display: block;
   margin: 12px auto 16px; /* center horizontally */
